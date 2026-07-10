@@ -15,3 +15,11 @@ It supports 55 languages - af, ar, bg, bn, ca, cs, cy, da, de, el, en, es, et, f
 The second problem we need to solve is to translate a text from one language to the language of our choice. In this case, we will use another useful python package called  deep-translator.
 
 *pip install deep-translator*
+
+## Installation
+
+Clone the repository and install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
