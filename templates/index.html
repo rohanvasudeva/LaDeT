@@ -1,206 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaDeT - Language Detection & Translation</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+<title>LaDeT | Language Detection & Translation</title>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 
-        body{
-            min-height:100vh;
-            background:linear-gradient(135deg,#667eea,#764ba2);
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            font-family:'Segoe UI',sans-serif;
-            padding:30px;
-        }
+<style>
 
-        .main-card{
-            width:100%;
-            max-width:900px;
-            background:rgba(255,255,255,.15);
-            backdrop-filter:blur(20px);
-            border-radius:25px;
-            padding:40px;
-            color:white;
-            box-shadow:0 20px 60px rgba(0,0,0,.25);
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        h1{
-            font-weight:700;
-        }
+body{
+    height:100vh;
+    overflow:hidden;
+    background:#FAEBD7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:"Segoe UI",sans-serif;
+}
 
-        .subtitle{
-            opacity:.8;
-            margin-bottom:30px;
-        }
+.main-card{
 
-        label{
-            font-weight:600;
-            margin-bottom:8px;
-        }
+    width:90%;
+    max-width:950px;
+    max-height:95vh;
 
-        textarea{
-            resize:none;
-            height:170px;
-        }
+    overflow:auto;
 
-        textarea,
-        select{
-            border-radius:15px!important;
-            padding:15px!important;
-        }
+    background:white;
+    border-radius:25px;
 
-        textarea:focus,
-        select:focus{
-            box-shadow:0 0 15px rgba(255,255,255,.4)!important;
-        }
+    padding:30px;
 
-        .btn-custom{
-            width:100%;
-            border:none;
-            border-radius:15px;
-            padding:15px;
-            font-size:18px;
-            font-weight:600;
-            background:linear-gradient(45deg,#00c6ff,#0072ff);
-            transition:.3s;
-        }
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.15);
 
-        .btn-custom:hover{
-            transform:translateY(-2px);
-            box-shadow:0 10px 25px rgba(0,114,255,.4);
-        }
+    border-top:8px solid #E67E22;
+}
 
-        .result-box{
-            margin-top:35px;
-            background:white;
-            color:#333;
-            border-radius:18px;
-            padding:25px;
-        }
+.title{
 
-        .result-box h5{
-            color:#0d6efd;
-            font-weight:700;
-        }
+    text-align:center;
+    margin-bottom:30px;
 
-        .translation{
-            background:#f5f7fb;
-            border-radius:12px;
-            padding:18px;
-            font-size:18px;
-            margin-top:10px;
-        }
+}
 
-        .icon{
-            font-size:60px;
-            margin-bottom:15px;
-            color:white;
-        }
+.title i{
 
-        .footer{
-            text-align:center;
-            margin-top:20px;
-            opacity:.8;
-            font-size:14px;
-        }
-    </style>
+    font-size:65px;
+    color:#E67E22;
+
+}
+
+.title h1{
+
+    color:#222;
+    font-weight:700;
+    margin-top:10px;
+
+}
+
+.subtitle{
+
+    color:#666;
+    margin-top:8px;
+
+}
+
+label{
+
+    color:#222;
+    font-weight:600;
+    margin-bottom:8px;
+
+}
+
+textarea{
+
+    resize:none;
+    height:130px;
+
+}
+
+.form-control,
+.form-select{
+
+    border-radius:15px;
+    padding:14px;
+    border:2px solid #ddd;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#E67E22;
+    box-shadow:0 0 10px rgba(230,126,34,.2);
+
+}
+
+.btn-custom{
+
+    width:100%;
+
+    background:#E67E22;
+    color:white;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:14px;
+
+    font-size:18px;
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.btn-custom:hover{
+
+    background:#D35400;
+    transform:translateY(-2px);
+
+}
+
+.result-box{
+
+    margin-top:25px;
+
+    border-radius:18px;
+
+    background:#FFF7EE;
+
+    border-left:6px solid #E67E22;
+
+    padding:22px;
+
+}
+
+.result-title{
+
+    color:#E67E22;
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:10px;
+
+}
+
+.detected{
+
+    font-size:18px;
+    color:#333;
+
+}
+
+.translation{
+
+    margin-top:10px;
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    max-height:180px;
+
+    overflow-y:auto;
+
+    color:#222;
+
+    line-height:1.6;
+
+}
+
+.footer{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+hr{
+
+    border-top:1px solid #ddd;
+
+}
+
+</style>
+
 </head>
 
 <body>
 
 <div class="main-card">
 
-    <div class="text-center">
-        <i class="fas fa-language icon"></i>
-        <h1>LaDeT</h1>
-        <p class="subtitle">
-            Language Detection & Translation
-        </p>
-    </div>
+<div class="title">
 
-    <form action="/trans" method="POST">
+<i class="fa-solid fa-language"></i>
 
-        <div class="mb-4">
-            <label>
-                <i class="fas fa-keyboard"></i>
-                Enter Text
-            </label>
+<h1>LaDeT</h1>
 
-            <textarea
-                class="form-control"
-                name="text"
-                placeholder="Type or paste any text here..."
-                required></textarea>
-        </div>
+<p class="subtitle">
 
-        <div class="mb-4">
-            <label>
-                <i class="fas fa-globe"></i>
-                Target Language
-            </label>
+Language Detection & Translation
 
-            <select
-                class="form-select"
-                name="target_lang"
-                required>
+</p>
 
-                {% for lang_code, lang_name in languages.items() %}
-                    <option value="{{ lang_code }}">
-                        {{ lang_name }}
-                    </option>
-                {% endfor %}
+</div>
 
-            </select>
-        </div>
+<form action="/trans" method="POST">
 
-        <button class="btn btn-custom">
-            <i class="fas fa-right-left"></i>
-            Detect & Translate
-        </button>
+<div class="mb-4">
 
-    </form>
+<label>
 
-    {% if translation %}
+<i class="fa-solid fa-keyboard"></i>
 
-    <div class="result-box">
+Enter Text
 
-        <h5>
-            <i class="fas fa-magnifying-glass"></i>
-            Detected Language
-        </h5>
+</label>
 
-        <p class="fs-5">{{ detected_lang }}</p>
+<textarea
+class="form-control"
+name="text"
+placeholder="Type or paste text here..."
+required></textarea>
 
-        <hr>
+</div>
 
-        <h5>
-            <i class="fas fa-language"></i>
-            Translation
-        </h5>
+<div class="mb-4">
 
-        <div class="translation">
-            {{ translation }}
-        </div>
+<label>
 
-    </div>
+<i class="fa-solid fa-earth-americas"></i>
 
-    {% endif %}
+Target Language
 
-    <div class="footer">
-        Made using Flask • LangDetect • Deep Translator
-    </div>
+</label>
+
+<select
+class="form-select"
+name="target_lang"
+required>
+
+{% for lang_code, lang_name in languages.items() %}
+
+<option value="{{ lang_code }}">
+
+{{ lang_name }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<button class="btn btn-custom">
+
+<i class="fa-solid fa-right-left"></i>
+
+Detect & Translate
+
+</button>
+
+</form>
+
+{% if translation %}
+
+<div class="result-box">
+
+<div class="result-title">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+Detected Language
+
+</div>
+
+<p class="detected">
+
+{{ detected_lang }}
+
+</p>
+
+<hr>
+
+<div class="result-title">
+
+<i class="fa-solid fa-language"></i>
+
+Translation
+
+</div>
+
+<div class="translation">
+
+{{ translation }}
+
+</div>
+
+</div>
+
+{% endif %}
+
+<div class="footer">
+
+Made using <b>Flask</b> • <b>LangDetect</b> • <b>Deep Translator</b>
+
+</div>
 
 </div>
 
