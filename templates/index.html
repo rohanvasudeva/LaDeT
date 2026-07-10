@@ -11,6 +11,26 @@
 
 <style>
 
+:root {
+    --bg-primary: #FAEBD7;
+    --bg-secondary: white;
+    --text-primary: #222;
+    --text-secondary: #666;
+    --border-color: #ddd;
+    --accent: #E67E22;
+    --accent-dark: #D35400;
+}
+
+body.dark-mode {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-color: #444;
+    --accent: #FF8C00;
+    --accent-dark: #FF9500;
+}
+
 *{
     margin:0;
     padding:0;
@@ -20,188 +40,226 @@
 body{
     height:100vh;
     overflow:hidden;
-    background:#FAEBD7;
+    background:var(--bg-primary);
     display:flex;
     justify-content:center;
     align-items:center;
     font-family:"Segoe UI",sans-serif;
+    transition:.3s;
 }
 
 .main-card{
-
     width:90%;
     max-width:950px;
     max-height:95vh;
-
     overflow:auto;
-
-    background:white;
+    background:var(--bg-secondary);
+    color:var(--text-primary);
     border-radius:25px;
-
     padding:30px;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+    border-top:8px solid var(--accent);
+    transition:.3s;
+}
 
-    box-shadow:
-    0 20px 50px rgba(0,0,0,.15);
+.theme-toggle{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:var(--accent);
+    color:white;
+    border:none;
+    border-radius:50%;
+    width:50px;
+    height:50px;
+    font-size:24px;
+    cursor:pointer;
+    transition:.3s;
+    z-index:1000;
+}
 
-    border-top:8px solid #E67E22;
+.theme-toggle:hover{
+    background:var(--accent-dark);
+    transform:scale(1.1);
 }
 
 .title{
-
     text-align:center;
     margin-bottom:30px;
-
 }
 
 .title i{
-
     font-size:65px;
-    color:#E67E22;
-
+    color:var(--accent);
 }
 
 .title h1{
-
-    color:#222;
+    color:var(--text-primary);
     font-weight:700;
     margin-top:10px;
-
 }
 
 .subtitle{
-
-    color:#666;
+    color:var(--text-secondary);
     margin-top:8px;
-
 }
 
 label{
-
-    color:#222;
+    color:var(--text-primary);
     font-weight:600;
     margin-bottom:8px;
-
 }
 
 textarea{
-
     resize:none;
     height:130px;
+}
 
+.input-group-wrapper{
+    position:relative;
+}
+
+.btn-microphone{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    background:var(--accent);
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:10px 12px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+    z-index:10;
+}
+
+.btn-microphone:hover{
+    background:var(--accent-dark);
+}
+
+.btn-microphone.recording{
+    background:#e74c3c;
 }
 
 .form-control,
 .form-select{
-
     border-radius:15px;
     padding:14px;
-    border:2px solid #ddd;
+    border:2px solid var(--border-color);
+    background:var(--bg-secondary);
+    color:var(--text-primary);
+    transition:.3s;
+}
 
+.form-control,
+.form-select {
+    color: var(--text-primary);
+}
+
+.form-select option {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
 }
 
 .form-control:focus,
 .form-select:focus{
-
-    border-color:#E67E22;
+    border-color:var(--accent);
     box-shadow:0 0 10px rgba(230,126,34,.2);
-
 }
 
 .btn-custom{
-
     width:100%;
-
-    background:#E67E22;
+    background:var(--accent);
     color:white;
-
     border:none;
-
     border-radius:15px;
-
     padding:14px;
-
     font-size:18px;
     font-weight:600;
-
     transition:.25s;
-
 }
 
 .btn-custom:hover{
-
-    background:#D35400;
+    background:var(--accent-dark);
     transform:translateY(-2px);
-
+}
+    transform:translateY(-2px);
 }
 
 .result-box{
-
     margin-top:25px;
-
     border-radius:18px;
-
-    background:#FFF7EE;
-
-    border-left:6px solid #E67E22;
-
+    background:var(--bg-secondary);
+    border-left:6px solid var(--accent);
     padding:22px;
-
+    transition:.3s;
 }
 
 .result-title{
-
-    color:#E67E22;
+    color:var(--accent);
     font-size:20px;
     font-weight:700;
     margin-bottom:10px;
-
 }
 
 .detected{
-
     font-size:18px;
-    color:#333;
-
+    color:var(--text-primary);
 }
 
 .translation{
-
     margin-top:10px;
-
-    background:white;
-
+    background:var(--bg-primary);
     border-radius:12px;
-
     padding:15px;
-
-    border:1px solid #ddd;
-
+    border:1px solid var(--border-color);
     max-height:180px;
-
     overflow-y:auto;
-
-    color:#222;
-
+    color:var(--text-primary);
     line-height:1.6;
+}
 
+.action-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+}
+
+.action-buttons button{
+    flex:1;
+}
+
+.btn-speak{
+    background:var(--accent);
+    color:white;
+    border:none;
+}
+
+.btn-speak:hover{
+    background:var(--accent-dark);
+}
+
+.btn-stop{
+    background:#666;
+    color:white;
+    border:none;
+}
+
+.btn-stop:hover{
+    background:#444;
 }
 
 .footer{
-
     text-align:center;
-
     margin-top:25px;
-
-    color:#666;
-
+    color:var(--text-secondary);
     font-size:14px;
-
 }
 
 hr{
-
-    border-top:1px solid #ddd;
-
+    border-top:1px solid var(--border-color);
 }
 
 </style>
@@ -209,6 +267,10 @@ hr{
 </head>
 
 <body>
+
+<button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">
+    <i class="fa-solid fa-moon"></i>
+</button>
 
 <div class="main-card">
 
@@ -219,9 +281,7 @@ hr{
 <h1>LaDeT</h1>
 
 <p class="subtitle">
-
 Language Detection & Translation
-
 </p>
 
 </div>
@@ -231,29 +291,35 @@ Language Detection & Translation
 <div class="mb-4">
 
 <label>
-
 <i class="fa-solid fa-keyboard"></i>
-
 Enter Text
-
 </label>
 
+<div class="input-group-wrapper">
 <textarea
 class="form-control"
+id="textInput"
 name="text"
 placeholder="Type or paste text here..."
 required></textarea>
+
+<button 
+type="button"
+class="btn-microphone"
+id="micButton"
+onclick="startSpeechRecognition()"
+title="Start speech to text">
+<i class="fa-solid fa-microphone"></i>
+</button>
+</div>
 
 </div>
 
 <div class="mb-4">
 
 <label>
-
 <i class="fa-solid fa-earth-americas"></i>
-
 Target Language
-
 </label>
 
 <select
@@ -262,13 +328,9 @@ name="target_lang"
 required>
 
 {% for lang_code, lang_name in languages.items() %}
-
 <option value="{{ lang_code }}">
-
 {{ lang_name }}
-
 </option>
-
 {% endfor %}
 
 </select>
@@ -276,11 +338,8 @@ required>
 </div>
 
 <button class="btn btn-custom">
-
 <i class="fa-solid fa-right-left"></i>
-
 Detect & Translate
-
 </button>
 
 </form>
@@ -290,32 +349,44 @@ Detect & Translate
 <div class="result-box">
 
 <div class="result-title">
-
 <i class="fa-solid fa-magnifying-glass"></i>
-
 Detected Language
-
 </div>
 
 <p class="detected">
-
 {{ detected_lang }}
-
 </p>
 
 <hr>
 
 <div class="result-title">
-
 <i class="fa-solid fa-language"></i>
-
 Translation
-
 </div>
 
-<div class="translation">
-
+<div class="translation" id="translatedText">
 {{ translation }}
+</div>
+
+<div class="action-buttons">
+
+<button
+class="btn btn-speak"
+onclick="speakTranslation()">
+
+<i class="fa-solid fa-volume-high"></i>
+Speak
+
+</button>
+
+<button
+class="btn btn-stop"
+onclick="speechSynthesis.cancel()">
+
+<i class="fa-solid fa-stop"></i>
+Stop
+
+</button>
 
 </div>
 
@@ -324,12 +395,132 @@ Translation
 {% endif %}
 
 <div class="footer">
-
 Made using <b>Flask</b> • <b>LangDetect</b> • <b>Deep Translator</b>
-
 </div>
 
 </div>
+
+<script>
+
+// Dark Mode Toggle
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+    updateThemeIcon();
+}
+
+function updateThemeIcon() {
+    const themeToggle = document.querySelector('.theme-toggle i');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    if (isDarkMode) {
+        themeToggle.classList.remove('fa-moon');
+        themeToggle.classList.add('fa-sun');
+    } else {
+        themeToggle.classList.remove('fa-sun');
+        themeToggle.classList.add('fa-moon');
+    }
+}
+
+// Initialize dark mode from localStorage
+window.addEventListener('DOMContentLoaded', function() {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+    }
+    updateThemeIcon();
+});
+
+// Speech Recognition
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition = null;
+let isListening = false;
+
+if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+
+    recognition.onstart = function() {
+        isListening = true;
+        const micButton = document.getElementById('micButton');
+        if (micButton) {
+            micButton.classList.add('recording');
+            micButton.innerHTML = '<i class="fa-solid fa-microphone-slash"></i>';
+        }
+    };
+
+    recognition.onresult = function(event) {
+        let transcript = '';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+            transcript += event.results[i][0].transcript;
+        }
+        const textInput = document.getElementById('textInput');
+        if (textInput) {
+            textInput.value += transcript;
+        }
+    };
+
+    recognition.onend = function() {
+        isListening = false;
+        const micButton = document.getElementById('micButton');
+        if (micButton) {
+            micButton.classList.remove('recording');
+            micButton.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+        }
+    };
+
+    recognition.onerror = function(event) {
+        console.error('Speech recognition error:', event.error);
+        const micButton = document.getElementById('micButton');
+        if (micButton) {
+            micButton.classList.remove('recording');
+            micButton.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+        }
+    };
+}
+
+function startSpeechRecognition() {
+    if (!SpeechRecognition) {
+        alert('Speech Recognition not supported in this browser');
+        return;
+    }
+
+    if (isListening) {
+        recognition.stop();
+    } else {
+        recognition.start();
+    }
+}
+
+function speakTranslation(){
+
+    const text =
+        document.getElementById("translatedText").innerText;
+
+    if(text.trim()==="")
+        return;
+
+    speechSynthesis.cancel();
+
+    const utterance =
+        new SpeechSynthesisUtterance(text);
+
+    utterance.lang =
+        "{{ target_lang if target_lang else 'en' }}";
+
+    utterance.rate = 1;
+
+    utterance.pitch = 1;
+
+    utterance.volume = 1;
+
+    speechSynthesis.speak(utterance);
+
+}
+
+</script>
 
 </body>
 </html>

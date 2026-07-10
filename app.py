@@ -39,9 +39,10 @@ def trans():
         detected_lang, translation = detect_and_translate(text, target_lang)
 
     return render_template(
-        'index.html',
+        "index.html",
         translation=translation,
         detected_lang=detected_lang,
+        target_lang=target_lang,
         languages=LANGUAGES
     )
 
