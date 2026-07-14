@@ -24,6 +24,8 @@ Clone the repository and install the required dependencies:
 pip install -r requirements.txt
 ```
 
+Run the app:
+
 ```bash
 python app.py
 ```
